@@ -1,0 +1,72 @@
+﻿arcpy.management.GetCount("ambulances")
+print("GIS is cool")
+x=37
+y=73
+x*y
+temp_c = 17
+temp_f = temp_c *9/5 + 32
+print(temp_f)
+# === Set Environment ===#
+ambulance_dispatch_fc = 'ambulances'
+ambulance_dispatch_fc = "ambulances"
+city_areas_fc = "fire_zones"
+output_table = "NearestAmbulanceDistances"
+output_joined_fc = "ZonesWithAmbulanceDistances"
+centroids_fc = "city_zones_centroids"
+arcpy.management.FeatureToPoint('fire_zones', 'centroids_fc', "INSIDE")
+arcpy.analysis.GenerateNearTable()
+arcpy.analysis.GenerateNearTable( in_features=centroids_fc, near_features=ambulance_dispatch_fc, out_table=output_table, search_radius="", location="NO_LOCATION", angle="NO_ANGLE", closest="ALL", closest_count=1)
+print(arcpy.Exists(centroids_fc))
+import arcpy
+arcpy.env.workspace = r"C:\Users\samue\Downloads\PythonStart\PythonStart"
+arcpy.env.overwriteOutput=True
+ambulance_dispatch_fc = "ambulances" city_areas_fc = "fire_zones" output_table = "NearestAmbulanceDistances" output_joined_fc = "ZonesWithAmbulanceDistances" centroids_fc = "city_zones_centroids" arcpy.management.FeatureToPoint('fire_zones', 'centroids_fc', "INSIDE")
+if arcpy.Exists(centroids_fc): print("Centroids created")
+print ("hello")
+import arcpy arcpy.env.workspace = r"C:\Users\samue\Downloads\PythonStart\PythonStart" arcpy.env.overwriteOutput=True ambulance_dispatch_fc = "ambulances" city_areas_fc = "fire_zones" output_table = "NearestAmbulanceDistances" output_joined_fc = "ZonesWithAmbulanceDistances" centroids_fc = "city_zones_centroids" arcpy.management.FeatureToPoint('fire_zones', 'centroids_fc', "INSIDE") if arcpy.Exists(centroids_fc): print("Centroids created")
+print(arcpy.Exists(centroids_fc))
+import arcpy arcpy.env.workspace = r"C:\Users\samue\Downloads\PythonStart\PythonStart" arcpy.env.overwriteOutput=True ambulance_dispatch_fc = "ambulances" city_areas_fc = "fire_zones" output_table = "NearestAmbulanceDistances" output_joined_fc = "ZonesWithAmbulanceDistances" centroids_fc = "city_zones_centroids" arcpy.management.FeatureToPoint('fire_zones', 'centroids_fc', "INSIDE")
+arcpy.analysis.GenerateNearTable(     in_features=centroids_fc,     near_features=ambulance_dispatch_fc,     out_table=output_table,     search_radius="",     location="NO_LOCATION",     angle="NO_ANGLE",     closest="ALL",     closest_count=1     )
+centroids_fc = "centroids_fc"
+arcpy.analysis.GenerateNearTable(     in_features=centroids_fc,     near_features=ambulance_dispatch_fc,     out_table=output_table,     search_radius="",     location="NO_LOCATION",     angle="NO_ANGLE",     closest="ALL",     closest_count=1     )
+arcpy.management.AddJoin(city_areas_fc, "OBJECTID", output_table, "IN_FID")
+arcpy.management.CopyFeatures(city_areas_fc,output_joined_fc)
+arcpy.management.JoinField()
+arcpy.management.JoinField(     in_data=city_areas_fc,     in_field="FID",     join_table=output_table,     join_field="IN_FID"     fields=["NEAR_DIST"] )
+arcpy.management.JoinField(     in_data=city_areas_fc,     in_field="FID",     join_table=output_table,     join_field="IN_FID",     fields=["NEAR_DIST"] )
+arcpy.management.JoinField(     in_data=city_areas_fc,     in_field="FID",     join_table=output_table,     join_field="IN_FID",     fields=["NEAR_DIST"] )
+working_city_areas_fc = r"C:\Users\samue\Downloads\PythonStart\PythonStart\fire_zones.shp"
+arcpy.management.JoinField(     in_data=working_city_areas_fc,     in_field="FID",     join_table=output_table,     join_field="IN_FID",     fields=["NEAR_DIST"] )
+arcpy.management.JoinField(     in_data=working_city_areas_fc,     in_field="ZoneID",     join_table=output_table,     join_field="IN_FID",     fields=["NEAR_DIST"] )
+arcpy.management.JoinField(     in_data=working_city_areas_fc,     in_field="FID",     join_table=output_table,     join_field="IN_FID",     fields=["NEAR_DIST"] )
+import arcpy
+#set environment workspace#
+arcpy.env.workspace = r"C:\Users\samue\Downloads\PythonStart\PythonStart"
+arcpy.env.overwriteOutput = True
+#input feature classes
+zones = r"C:\Users\samue\Downloads\PythonStart\PythonStart\fire_zones.shp"
+points = r"C:\Users\samue\Downloads\PythonStart\PythonStart\ambulances.shp"
+#output feature class
+arcpy.analysis.SpatialJoin()
+arcpy.analysis.SpatialJoin(     target_features=zones,     join_features=points,     out_feature_class=ambulance_count,     join_operation="JOIN_ONE_TO_ONE",     join_type="KEEP_ALL",     match_option="INTERSECT" )
+ambulance_count = r"C:\Users\samue\Downloads\PythonStart\PythonStart\ambulance_count.shp"
+arcpy.analysis.SpatialJoin(     target_features=zones,     join_features=points,     out_feature_class=ambulance_count,     join_operation="JOIN_ONE_TO_ONE",     join_type="KEEP_ALL",     match_option="INTERSECT" )
+import arcpy.mp
+aprx = arcpy.mp.ArcGISProject("CURRENT")
+map_obj = aprx.listMaps("Map")[0]
+layer = map_obj.listLayers("ambulance_count")
+layer = map_obj.listLayers("ambulance_count")[0]
+symbology = layer.symbology
+symbology.updateRenderer('GraduatedColors')
+symbology.updateRenderer('GraduatedColorsRenderer')
+symbology.renderer.field = 'Join_Count'
+symbology.renderer.classBreaks[0].symbol.color = [255, 0, 0]
+color_ramp=arcpy.mp.ListColorRamps("Inferno")[0]
+color_ramp = arcpy.mp.ColorRamp("Inferno")[0]
+color_ramp = arcpy.mp.ColorRamp[0]
+color_ramp = arcpy.mp.ColorRamp
+color_ramp=color_ramp[0]
+layer.symbology=symbology
+aprx.save()
+python ScriptingPractice1
+run kill tom
